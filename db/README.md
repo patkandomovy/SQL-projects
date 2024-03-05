@@ -1,10 +1,15 @@
 V rámci elearningového systému môžu učitelia vytvárať testy, prideľovať ich študentom a sledovať ako sa študentom v teste darilo. Pre jednoduchosť budeme uvažovať len testy typu ABCD, vždy s jednou správnou a 3 nesprávnymi odpoveďami. Chceme teda evidovať nasledovné údaje:
 
 Otázky testu: Text otázky, správna odpoveď, nesprávne odpovede. Pre jednoduchosť budeme uvažovať len testy typu ABCD vždy s jednou správnou a 3 nesprávnymi odpoveďami.
+
 Test: učiteľ môže vytvoriť test pozostávajúci z niekoľkých otázok (ľubovoľne veľa). O teste potrebujeme evidovať názov testu, ID autora (majiteľa testu) a ID otázok, ktoré daný test obsahuje.
+
 Pridelenie: Učiteľ môže prideliť test žiakom. O pridelení je potrebné evidovať kto test pridelil (t.j. ID učiteľa), komu je test pridelený (ID študenta), ID testu a čas, kedy bol test žiakovi pridelený.
+
 Výsledok: Po vypracovaní prideleného testu chceme zaznamenať študentove skóre. O výsledku (vypracovaní) potrebujeme vedieť, ktorého pridelenia sa týka, čas vypracovania testu a skóre v percentách. Študent môže v rámci jedného pridelenia absolvovať test ľubovoľne veľa krát.
+
 Odpoveď: Pri vypracovávaní prideleného testu, t.j. pridelenia, žiak zvolil na otázky testu jednu z možných odpovedí. Chceme evidovať, ktoré odpovede zvolil, t.j. pre daný výsledok (resp. vypracovanie) a otázku testu chceme evidovať text odpovede.
+
 Študent, Učiteľ: O každom študentovi a učiteľovi chceme evidovať jeho meno a priezvisko.
 
 Vašou úlohou je:
