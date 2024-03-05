@@ -132,7 +132,7 @@ INSERT INTO odpoved VALUES
 
 
 
-/* 4 */ 
+/* 4. Pri odchode učiteľa zo školy chceme presunúť jeho testy na iného učiteľa. Napíšte dotaz, ktorý zmení autora/majiteľa testu na iného učiteľa (ID učiteľov môžu byť konštanty). Dotaz pridajte do súboru testy.sql. */ 
 SELECT * FROM test;
 
 UPDATE test
@@ -141,7 +141,7 @@ WHERE autor_id = 2;
 
 SELECT * FROM test;
 
-/* 5 */
+/* 5. Napíšte dotazy, ktoré pre dané ID testu (konštanta) vymažú tento test z databázy spolu so všetkými jeho prideleniami a výsledkami. Dotazy pridajte do súboru testy.sql. */
 SELECT * FROM test;
 SELECT * FROM pridelenie;
 SELECT * FROM vysledok;
@@ -163,7 +163,7 @@ SELECT * FROM test;
 SELECT * FROM pridelenie;
 SELECT * FROM vysledok;
 
-/* 6 */
+/* 6. Učitelia majú požiadavku na doplnenie informácie, dokedy môže študent pridelený test vypracovať. Napíšte dotaz, ktorý upraví štruktúru tabuliek tak, aby pre každé pridelenie bolo možné evidovať termín, dokedy študent musí test vypracovať */
 SELECT * FROM pridelenie;
 
 ALTER TABLE pridelenie
@@ -171,7 +171,7 @@ ADD COLUMN cas_dokedy TIMESTAMP;
 
 SELECT * FROM pridelenie;
 
-/* 7.1 */
+/* 7.1. Vypíšte zoznam študentov a im pridelených testov, t.j. 5-tice [Meno študenta, Priezvisko študenta, NazovTestu, CasPridelenia, CasVypracovania], kde NazovTestu je názov testu, ktorý bol pridelený študentovi StudentID v čase CasPridelenia. Ak študent test vypracoval, nech CasVypracovania je čas posledného vypracovania testu. Ak študent test ešte nerobil, CasVypracovania je NULL. Zoznam usporiadajte zostupne podľa času pridelenia. */
 
 /*pridam si nicnerobiaceho studenta, ucitela a test, ktory nebol vypracovany */
 insert into student values
@@ -211,7 +211,9 @@ LEFT JOIN vysledok v ON p.id = v.pridelenie_id
 GROUP BY s.meno, s.priezvisko, t.nazov, p.cas_pridelenia
 ORDER BY p.cas_pridelenia DESC;
 
-/* 7.2  zaznam s opakovacom motivovanym by mal obsahovat posledny cas vypracovania a vysledok,
+/* 7.2. Doplňte zoznam z predchádzajúcej úlohy o informáciu o výsledku študenta z daného testu, t.j. vypíšte 6-tice [Meno študenta, Priezvisko študenta, NazovTestu, CasPridelenia, CasVypravovania, VysledokPercenta], kde VysledokPercenta je posledný výsledok (ak existuje) daného študenta z daného pridelenia (t.j. VysledokPercenta zodpoveda tomu istemu vypracovaniu ako CasVypracovania). Ak študent ešte test neriešil, VysledokPercenta nech je NULL (podobne ako CasVypracovania).
+ 
+  zaznam s opakovacom motivovanym by mal obsahovat posledny cas vypracovania a vysledok,
  ktory tomu vypracovaniu prislucha -- teda 2025-01-02 00:00:00 |  25.00 */
 
 SELECT 
@@ -239,7 +241,8 @@ WHERE v.skore = (
 GROUP BY s.meno, s.priezvisko, t.nazov, p.cas_pridelenia, v.skore
 ORDER BY p.cas_pridelenia DESC;
 
-/* 7.3 
+/* 7.3. Doplňte predchádzajúci zoznam o informáciu, či študent odpovedal na všetky otázky testu. T.j. vypíšte 6-tice [Meno študenta, Priezvisko študenta, NazovTestu, CasPridelenia, VysledokPercenta, Dokoncil], kde Dokoncil je "ano", ak študent odpovedal na všetky otázky daného testu a "nie" ak existuje otázka, na ktorú neodpovedal (t.j. neexistuje záznam v tabuľke s odpoveďami)
+ 
 v prvom zazname by malo byt nie - student nema zaznamenane ziadne odpovede;
 v druhom zazname by malo byt nie - student nema zaznamenanu jednu odpoved, ostatne ano
 v tretom zazname by malo byt ano - student ma zaznamenane vsetky odpovede*/
@@ -276,8 +279,7 @@ GROUP BY s.meno, s.priezvisko, t.nazov, p.cas_pridelenia, v.skore
 ORDER BY p.cas_pridelenia DESC;
 
 
-/* 7.4 snad som tomu pochopil spravne -- chceme otazky, na ktore niekto odpovedal spravne a zaroven nikto neodpovedal
- nespravne, a nemusime sa pozerat na to, ci tu otazku student musel mat v pridelenom teste*/
+/* 7.4. Vypíšte otázky, t.j. 2-tice [Text,SpravnaOdpoved], na ktoré odpovedal správne každý študent (v rámci akéhokoľvek pridelenia, t.j. neexistuje nesprávne odpovedanie na túto otázku). */
 
 /*pridal som nove odpovede, vypisal tabulku na kontrolu neskor*/
 INSERT INTO odpoved VALUES 
